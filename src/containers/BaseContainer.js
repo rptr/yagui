@@ -72,11 +72,17 @@ class BaseContainer {
     return widget;
   }
 
-  addColor(name, valOrObject, callbackOrKey, options) {
-    var widget = new Color(valOrObject, callbackOrKey, options);
+  addColor(name, valOrObject, callbackOrKey, optz) {
+    var widget = new Color(valOrObject, callbackOrKey, optz);
     var domLine = this._addLine();
-    if (options && options.noPopup)
-      domLine.style.height = '100px';
+    if (typeof optz !== 'undefined' && optz.noPopup)
+    {
+      domLine.style.height = '150px';
+      widget.domSaturation.style.width = '150px';
+      widget.domSaturation.style.height = '150px';
+      widget.widgetWidth = 150;
+      widget.widgetHeight = 150;
+    }
     if (name) domLine.appendChild(this._createLabel(name));
     else widget.domColor.style.width = '100%';
     domLine.appendChild(widget.domColor);
