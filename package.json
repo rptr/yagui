@@ -6,7 +6,8 @@
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
-    "babel-loader": "^8.0.6"
+    "babel-loader": "^8.0.6",
+    "webpack-cli": "^3.3.12"
   },
   "scripts": {
     "dev": "webpack -w",
@@ -14,12 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/stephomi/yagui.git"
+    "url": "https://github.com/rptr/yagui.git"
   },
   "author": "Stéphane GINIER",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/stephomi/yagui/issues"
+    "url": "https://github.com/rptr/yagui/issues"
   },
-  "homepage": "https://github.com/stephomi/yagui"
+  "homepage": "https://github.com/rptr/yagui",
+  "dependencies": {
+    "webpack": "^4.44.1"
+  }
 }
