@@ -6,7 +6,7 @@ var urlAlpha = 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAA
 
 class Color extends BaseWidget {
 
-  constructor(valOrObject, callbackOrKey, options) {
+  constructor(valOrObject, callbackOrKey, optz) {
     super();
 
     var value = this._getInitialValue(valOrObject, callbackOrKey);
@@ -16,19 +16,15 @@ class Color extends BaseWidget {
 
     var noPopup = false;
 
-    if (options && options.noPopup) {
+    if (optz && optz.noPopup) {
       noPopup = true;
     }
 
     // container
     this.domColor = document.createElement('div');
-    if (noPopup)
-      this.domColor.className = 'gui-widget-color';
-    else
-      this.domColor.className = '';
+    this.domColor.className = 'gui-widget-color';
 
     // input text
-    this.domInputColor = document.createElement('input');
     this.domPopup = document.createElement('div');
 
     // hue picker
@@ -47,15 +43,14 @@ class Color extends BaseWidget {
 
     this.domHue.appendChild(this.domHueKnob);
     if (!noPopup) {
-      this.domPopup.appendChild(this.domSaturationKnob);
-      this.domPopup.appendChild(this.domSaturation);
-      this.domPopup.appendChild(this.domHue);
-      this.domColor.appendChild(this.domInputColor);
+      this.domInputColor = document.createElement('input');
     } else {
-      this.domColor.appendChild(this.domSaturationKnob);
-      this.domColor.appendChild(this.domSaturation);
-      this.domColor.appendChild(this.domHue);
+      this.domInputColor = document.createElement('div');
     }
+    this.domPopup.appendChild(this.domSaturationKnob);
+    this.domPopup.appendChild(this.domSaturation);
+    this.domPopup.appendChild(this.domHue);
+    this.domColor.appendChild(this.domInputColor);
     this.domColor.appendChild(this.domPopup);
 
     this._hueGradient(this.domHue);
