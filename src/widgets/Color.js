@@ -22,10 +22,17 @@ class Color extends BaseWidget {
 
     // container
     this.domColor = document.createElement('div');
-    this.domColor.className = 'gui-widget-color';
 
     // input text
     this.domPopup = document.createElement('div');
+    this.domInputColor = document.createElement('input');
+
+    if (!noPopup) {
+      this.domColor.className = 'gui-widget-color';
+    } else {
+      this.domColor.className = 'gui-widget-color-2';
+      this.domPopup.className = 'gui-widget-color-popup';
+    }
 
     // hue picker
     this.domHue = document.createElement('div');
@@ -42,15 +49,11 @@ class Color extends BaseWidget {
     this.domSaturationKnob.className = 'gui-knob-saturation';
 
     this.domHue.appendChild(this.domHueKnob);
-    if (!noPopup) {
-      this.domInputColor = document.createElement('input');
-    } else {
-      this.domInputColor = document.createElement('div');
-    }
+
+    this.domColor.appendChild(this.domInputColor);
     this.domPopup.appendChild(this.domSaturationKnob);
     this.domPopup.appendChild(this.domSaturation);
     this.domPopup.appendChild(this.domHue);
-    this.domColor.appendChild(this.domInputColor);
     this.domColor.appendChild(this.domPopup);
 
     this._hueGradient(this.domHue);
