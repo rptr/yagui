@@ -6,7 +6,7 @@ var urlAlpha = 'url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAA
 
 class Color extends BaseWidget {
 
-  constructor(valOrObject, callbackOrKey) {
+  constructor(valOrObject, callbackOrKey, options) {
     super();
 
     var value = this._getInitialValue(valOrObject, callbackOrKey);
@@ -14,9 +14,18 @@ class Color extends BaseWidget {
     if (value) this.color = GuiUtils.getValidColor(value.slice());
     else this.color = [1.0, 0.0, 0.0];
 
+    var noPopup = false;
+
+    if (options && options.noPopup) {
+      noPopup = true;
+    }
+
     // container
     this.domColor = document.createElement('div');
-    this.domColor.className = 'gui-widget-color';
+    if (noPopup)
+      this.domColor.className = 'gui-widget-color';
+    else
+      this.domColor.className = '';
 
     // input text
     this.domInputColor = document.createElement('input');
@@ -37,10 +46,16 @@ class Color extends BaseWidget {
     this.domSaturationKnob.className = 'gui-knob-saturation';
 
     this.domHue.appendChild(this.domHueKnob);
-    this.domPopup.appendChild(this.domSaturationKnob);
-    this.domPopup.appendChild(this.domSaturation);
-    this.domPopup.appendChild(this.domHue);
-    this.domColor.appendChild(this.domInputColor);
+    if (!noPopup) {
+      this.domPopup.appendChild(this.domSaturationKnob);
+      this.domPopup.appendChild(this.domSaturation);
+      this.domPopup.appendChild(this.domHue);
+      this.domColor.appendChild(this.domInputColor);
+    } else {
+      this.domColor.appendChild(this.domSaturationKnob);
+      this.domColor.appendChild(this.domSaturation);
+      this.domColor.appendChild(this.domHue);
+    }
     this.domColor.appendChild(this.domPopup);
 
     this._hueGradient(this.domHue);

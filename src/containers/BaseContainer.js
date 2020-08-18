@@ -72,9 +72,11 @@ class BaseContainer {
     return widget;
   }
 
-  addColor(name, valOrObject, callbackOrKey) {
-    var widget = new Color(valOrObject, callbackOrKey);
+  addColor(name, valOrObject, callbackOrKey, options) {
+    var widget = new Color(valOrObject, callbackOrKey, options);
     var domLine = this._addLine();
+    if (options && options.noPopup)
+      domLine.style.height = '100px';
     if (name) domLine.appendChild(this._createLabel(name));
     else widget.domColor.style.width = '100%';
     domLine.appendChild(widget.domColor);
