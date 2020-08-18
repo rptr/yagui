@@ -77,9 +77,11 @@ class BaseContainer {
     var domLine = this._addLine();
     if (typeof optz !== 'undefined' && optz.noPopup)
     {
-      domLine.style.height = '150px';
+      domLine.style.height = '180px';
       widget.domSaturation.style.width = '150px';
       widget.domSaturation.style.height = '150px';
+      widget.domHue.style.height = '150px';
+      widget.domHue.style.width = '30px';
       widget.widgetWidth = 150;
       widget.widgetHeight = 150;
     }
